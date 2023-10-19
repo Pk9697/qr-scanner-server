@@ -1,7 +1,11 @@
 import express from 'express'
+import router from './routes/index.js'
 
 const port = 4001
 const app = express()
+
+//use express router
+app.use('/', router)
 
 /* RUN SERVER */
 app.listen(port, (err) => {
