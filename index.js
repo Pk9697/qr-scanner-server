@@ -2,6 +2,7 @@ import express from 'express'
 import 'dotenv/config'
 import 'passport'
 import 'passport-jwt'
+import bodyParser from 'body-parser'
 import router from './routes/index.js'
 import './config/mongoose.js'
 
@@ -10,6 +11,7 @@ const app = express()
 
 /* MIDDLEWARES */
 app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 // use express router
 app.use('/', router)
 
