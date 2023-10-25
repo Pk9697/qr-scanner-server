@@ -2,7 +2,6 @@
 import Qr from '../../../models/qr.js'
 /* CREATE POST- requires authentication */
 /* api/v1/qrcodes/:qrContent */
-// eslint-disable-next-line import/prefer-default-export
 export const createQr = async (req, res) => {
   try {
     const { qrContent } = req.params
@@ -76,7 +75,7 @@ export const getAllQrs = async (req, res) => {
     const qrs = await Qr.find({ user: req.user._id })
     return res.status(200).json({
       success: true,
-      message: 'Here are your qrs saved',
+      message: 'Here are your saved qrs',
       data: {
         qrs,
       },

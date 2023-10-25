@@ -70,7 +70,6 @@ export const login = async (req, res) => {
     }
 
     const { password: pass, ...userWithoutPass } = user?._doc
-    // console.log({ userWithoutPass })
 
     return res.status(200).json({
       success: true,
@@ -80,6 +79,26 @@ export const login = async (req, res) => {
           expiresIn: '1d',
         }),
         user: userWithoutPass,
+      },
+    })
+  } catch (err) {
+    console.log(err)
+    return res.status(500).json({
+      success: false,
+      message: 'Internal Server Error',
+    })
+  }
+}
+
+export const authenticateUser = async (req, res) => {
+  try {
+    const user = await User.findById(req.user._id)
+
+    return res.status(200).json({
+      success: true,
+      message: 'Authentication successful!',
+      data: {
+        user,
       },
     })
   } catch (err) {
