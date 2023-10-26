@@ -1,10 +1,10 @@
 /* eslint-disable no-underscore-dangle */
 import Qr from '../../../models/qr.js'
 /* CREATE POST- requires authentication */
-/* api/v1/qrcodes/:qrContent */
+/* api/v1/qrcodes/create?qrContent={qrContent} */
 export const createQr = async (req, res) => {
   try {
-    const { qrContent } = req.params
+    const { qrContent } = req.query
     const qr = await Qr.findOne({ user: req.user.id, content: qrContent })
     if (qr) {
       return res.status(422).json({
@@ -72,7 +72,7 @@ export const deleteQr = async (req, res) => {
 /* api/v1/qrcodes */
 export const getAllQrs = async (req, res) => {
   try {
-    const qrs = await Qr.find({ user: req.user._id })
+    const qrs = await Qr.find({ user: req.user._id }).sort('-createdAt')
     return res.status(200).json({
       success: true,
       message: 'Here are your saved qrs',

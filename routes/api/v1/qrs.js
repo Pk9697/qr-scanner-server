@@ -5,8 +5,8 @@ import { createQr, deleteQr, getAllQrs } from '../../../controllers/api/v1/qrs.j
 
 const router = express.Router()
 
-/* /api/v1/qrcodes/create/:qrContent */
-router.post('/create/:qrContent', passport.authenticate('jwt', { session: false }), createQr)
+/* /api/v1/qrcodes/create?qrContent={qrContent} */
+router.post('/create', passport.authenticate('jwt', { session: false }), createQr)
 /* api/v1/qrcodes/delete/:qrId */
 router.delete('/delete/:qrId', passport.authenticate('jwt', { session: false }), deleteQr)
 /* api/v1/qrcodes */
