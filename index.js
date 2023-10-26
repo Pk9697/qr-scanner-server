@@ -7,7 +7,7 @@ import cors from 'cors'
 import router from './routes/index.js'
 import './config/mongoose.js'
 
-const port = 4001
+const port = process.env.QR_SCANNER_PORT || 4001
 const app = express()
 
 /* MIDDLEWARES */
